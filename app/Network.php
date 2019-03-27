@@ -30,4 +30,32 @@ class Network extends Model
     {
         return $this->hasOne(CalculatedPosition::class);
     }
+
+    public function recalculate()
+    {
+        $sel_position = null;
+        $min_db = 999;
+        $positions = $this->positions()->get();
+        //find best candidate
+        foreach($positions as $position){
+            if($position->pivot->db < $min_db){
+                $min_db = $position->pivot->db;
+                $sel_position = $position;
+            }
+        }
+
+        if($sel_position){
+            $this->calculatedPosition()->delete();
+            return $this->calculatedPosition()->create([
+                'lat' => $position->lat,
+                'lng' => $position->lng,
+                'size' => $this->calculateSize($position->pivot->db)
+            ]);
+        }
+    }
+
+    protected function calculateSize($db)
+    {
+        return sqrt($db);
+    }
 }

@@ -45,7 +45,12 @@ class CalculatePositions extends Command
         $date_from = Carbon::now()->subMinute();
         $date_to = Carbon::now();
         $positions = Position::whereBetween('updated_at', [$date_from, $date_to])->get();
-        $positions
+        foreach($positions as $position){
+            $networks = $position->networks;
+            foreach($networks as $network){
+                $network->recalculate();
+            }
+        }
         // Weź wszystkie pozycje z ostatniej minuty i je przeanalizuj biorąc wszystkie poprzednie odczyty tych sieci
     }
 }
