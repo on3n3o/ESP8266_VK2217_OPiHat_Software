@@ -13,6 +13,21 @@ class Network extends Model
     ];
 
     protected $casts = [
-        'channel' => 'number'
+        'channel' => 'integer'
     ];
+
+    public function networkPositions()
+    {
+        return $this->hasMany(NetworkPosition::class);
+    }
+
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class, 'network_position')->withPivot('db');
+    }
+
+    public function calculatedPosition()
+    {
+        return $this->hasOne(CalculatedPosition::class);
+    }
 }

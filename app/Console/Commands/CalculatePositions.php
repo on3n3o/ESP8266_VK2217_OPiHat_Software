@@ -3,15 +3,20 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Carbon\Carbon;
+use App\Network;
+use App\Position;
+use App\NetworkPosition;
+use App\CalculatedPosition;
 
-class DataAcquisition extends Command
+class CalculatePositions extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'data:acquisition';
+    protected $signature = 'calculate:positions';
 
     /**
      * The console command description.
@@ -37,10 +42,10 @@ class DataAcquisition extends Command
      */
     public function handle()
     {
-        /**
-         * Every minute check GPS and get networks and save them to database
-         */
-        $gpsData = exec();
-        $networkData = exec();
+        $date_from = Carbon::now()->subMinute();
+        $date_to = Carbon::now();
+        $positions = Position::whereBetween('updated_at', [$date_from, $date_to])->get();
+        $positions
+        // Weź wszystkie pozycje z ostatniej minuty i je przeanalizuj biorąc wszystkie poprzednie odczyty tych sieci
     }
 }

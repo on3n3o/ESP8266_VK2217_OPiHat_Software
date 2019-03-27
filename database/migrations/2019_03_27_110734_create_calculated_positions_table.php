@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNetworkPositionsTable extends Migration
+class CreateCalculatedPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateNetworkPositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('network_position', function (Blueprint $table) {
+        Schema::create('calculated_positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('position_id')->unsigned();
-            $table->foreign('position_id')->references('id')->on('positions');
             $table->integer('network_id')->unsigned();
             $table->foreign('network_id')->references('id')->on('networks');
-            $table->decimal('db', 6, 3);
+            $table->decimal('lat', 10, 8)->unsigned();
+            $table->decimal('lng', 11, 8)->unsigned();
+            $table->decimal('size', 5, 3)->unsigned();
             $table->timestamps();
         });
     }
@@ -31,10 +31,9 @@ class CreateNetworkPositionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('network_position', function(Blueprint $table){
+        Schema::table('calculated_positions', function (Blueprint $table) {
             $table->dropForeign(['network_id']);
-            $table->dropForeign(['position_id']);
         });
-        Schema::dropIfExists('network_position');
+        Schema::dropIfExists('calculated_positions');
     }
 }
