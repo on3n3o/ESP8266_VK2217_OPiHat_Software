@@ -18,8 +18,8 @@ class ESP8266
         // $serialPort = new SerialPort(new SeparatorParser(), $configure);
         // $serialPort->open("/dev/ttyS1");
         // $this->connection = $serialPort;
-        exec('../../scripts/esp.sh');
-        $this->file = file_get_contents('../../scripts/ttyDump.dat');
+        exec(__DIR__ . '../../scripts/esp.sh');
+        $this->file = file_get_contents(__DIR__ . '../../scripts/ttyDump.dat');
     }
 
     public function getNetworks(){
