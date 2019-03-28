@@ -37,7 +37,7 @@ class VK2217
         return [
             'status' => $raw[2],
             'lat' => $raw[3],
-            'lng' => $raw[4]
+            'lng' => $raw[5]
         ];
     }
 }
