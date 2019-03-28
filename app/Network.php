@@ -38,8 +38,8 @@ class Network extends Model
         $positions = $this->positions()->get();
         //find best candidate
         foreach($positions as $position){
-            if($position->pivot->db < $min_db){
-                $min_db = $position->pivot->db;
+            if(abs($position->pivot->db) < $min_db){
+                $min_db = abs($position->pivot->db);
                 $sel_position = $position;
             }
         }
@@ -56,6 +56,6 @@ class Network extends Model
 
     protected function calculateSize($db)
     {
-        return sqrt($db);
+        return sqrt(abs($db));
     }
 }

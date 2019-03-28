@@ -1,25 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Network;
-
 use Illuminate\Http\Request;
-// $config = array();
-// $config['center'] = 'auto';
-// $config['onboundschanged'] = 'if (!centreGot) {
-//         var mapCentre = map.getCenter();
-//         marker_0.setOptions({
-//             position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-//         });
-//     }
-//     centreGot = true;';
-
-// app('map')->initialize($config);
-
-// // set up the marker ready for positioning
-// // once we know the users location
-// $marker = array();
-// app('map')->add_marker($marker);
 
 class HomeController extends Controller
 {
@@ -50,6 +34,5 @@ class HomeController extends Controller
 
         /** @todo move this to resources views */
         return view('home', compact('map', 'networks'));
-        //echo "<html><head><meta http-equiv='refresh' content='60'><script type='text/javascript'>var centreGot = false;</script>".$map['js']."</head><body>". "<div id='map_canvas' style='width:100%; height:100%;'></div>" ."</body></html>";
     }
 }
