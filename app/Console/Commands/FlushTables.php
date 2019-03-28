@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Network;
+use App\NetworkPosition;
+use App\Position;
 
 class FlushTables extends Command
 {
@@ -11,14 +14,14 @@ class FlushTables extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'flush:tables';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'This command flushes tables with data';
 
     /**
      * Create a new command instance.
@@ -37,6 +40,10 @@ class FlushTables extends Command
      */
     public function handle()
     {
-        //
+        DB::statement("SET foreign_key_checks=0");
+        Network::truncate();
+        Position::truncate();
+        NetworkPosition::truncate();
+        DB::statement("SET foreign_key_checks=1");
     }
 }

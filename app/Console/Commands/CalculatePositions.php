@@ -4,10 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Carbon\Carbon;
-use App\Network;
 use App\Position;
-use App\NetworkPosition;
-use App\CalculatedPosition;
 
 class CalculatePositions extends Command
 {
@@ -23,7 +20,7 @@ class CalculatePositions extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'This command calculates best viable position for network';
 
     /**
      * Create a new command instance.
@@ -36,13 +33,13 @@ class CalculatePositions extends Command
     }
 
     /**
-     * Execute the console command.
+     * Weź wszystkie pozycje z ostatnich 5 minut i je przeanalizuj biorąc wszystkie poprzednie odczyty tych sieci
      *
      * @return mixed
      */
     public function handle()
     {
-        $date_from = Carbon::now()->subMinute();
+        $date_from = Carbon::now()->subMinutes(5);
         $date_to = Carbon::now();
         $positions = Position::whereBetween('updated_at', [$date_from, $date_to])->get();
         foreach($positions as $position){
@@ -51,6 +48,5 @@ class CalculatePositions extends Command
                 $network->recalculate();
             }
         }
-        // Weź wszystkie pozycje z ostatniej minuty i je przeanalizuj biorąc wszystkie poprzednie odczyty tych sieci
     }
 }
