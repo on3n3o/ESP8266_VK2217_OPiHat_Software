@@ -33,11 +33,11 @@ class VK2217
     }
 
     public function getFormattedGPS(){
-        $lat = 0;
-        $lng = 0;
         $raw = explode(',', $this->getGPS());
-        $lat = $raw[3];
-        $lng = $raw[5];
-        return $lat . ', ' . $lng;
+        return [
+            'status' => $raw[2],
+            'lat' => $raw[3],
+            'lng' => $raw[4]
+        ];
     }
 }
