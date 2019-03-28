@@ -65,7 +65,7 @@ class DataAcquisition extends Command
                         'lng' => $gpsData['lng']
                     ]);
                     $network_position = NetworkPosition::create([
-                        'netowrk_id' => $net->id,
+                        'network_id' => $net->id,
                         'position_id' => $position->id,
                         'db' => $network['db']
                     ]);
