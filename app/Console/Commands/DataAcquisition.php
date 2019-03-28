@@ -7,6 +7,7 @@ use App\Connectors\VK2217;
 use App\Connectors\ESP8266;
 use App\Network;
 use App\NetworkPosition;
+use App\Position;
 
 class DataAcquisition extends Command
 {
