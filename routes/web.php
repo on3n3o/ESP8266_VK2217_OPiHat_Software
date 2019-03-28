@@ -15,28 +15,4 @@
 //     return view('welcome');
 // });
 
-Route::get('/', function(){
-    $config['center'] = '51.9478458, 19.4682356';
-    $config['zoom'] = '6.75';
-    app('map')->initialize($config);
-
-    // $config = array();
-    // $config['center'] = 'auto';
-    // $config['onboundschanged'] = 'if (!centreGot) {
-    //         var mapCentre = map.getCenter();
-    //         marker_0.setOptions({
-    //             position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-    //         });
-    //     }
-    //     centreGot = true;';
-
-    // app('map')->initialize($config);
-
-    // // set up the marker ready for positioning
-    // // once we know the users location
-    // $marker = array();
-    // app('map')->add_marker($marker);
-
-    $map = app('map')->create_map();
-    echo "<html><head><script type='text/javascript'>var centreGot = false;</script>".$map['js']."</head><body>".$map['html']."</body></html>";
-});
+Route::get('/', 'HomeController@index');

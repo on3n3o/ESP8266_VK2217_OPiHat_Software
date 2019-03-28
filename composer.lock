@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b12a38c0dbc3a426c5e3089b8a45b25",
+    "content-hash": "b2b0ff894ad44e7152aee85973545e4b",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1172,6 +1172,44 @@
                 "storage"
             ],
             "time": "2019-02-01T08:50:36+00:00"
+        },
+        {
+            "name": "lepiaf/serialport",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lepiaf/serialport.git",
+                "reference": "8d7041c7caf1ad222a6090eaccb6ab738e5419ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lepiaf/serialport/zipball/8d7041c7caf1ad222a6090eaccb6ab738e5419ed",
+                "reference": "8d7041c7caf1ad222a6090eaccb6ab738e5419ed",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "lepiaf\\SerialPort\\": "src/lepiaf/SerialPort"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thierry Thuon",
+                    "email": "lepiaf@users.noreply.github.com"
+                }
+            ],
+            "description": "Serial port access convenience class",
+            "time": "2018-09-12T18:06:45+00:00"
         },
         {
             "name": "monolog/monolog",
