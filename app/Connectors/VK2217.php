@@ -16,10 +16,12 @@ class VK2217
 
     public function connect(){
         $this->connection->open("/dev/ttyS2");
+        return $this;
     }
 
     public function disconnect(){
         $this->connection->close();
+        return $this;
     }
 
     public function getGPS(){
@@ -28,5 +30,14 @@ class VK2217
                 return $data;
             }
         }
+    }
+
+    public function getFormattedGPS(){
+        $lat = 0;
+        $lng = 0;
+        $raw = explode(',', $this->getGPS());
+        $lat = $raw[3];
+        $lng = $raw[5];
+        return $lat . ', ' . $lng;
     }
 }
