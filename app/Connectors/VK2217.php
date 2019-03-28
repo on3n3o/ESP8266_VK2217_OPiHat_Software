@@ -11,15 +11,20 @@ class VK2217
     protected $connection = null;
 
     public function __construct(){
-        $serialPort = new SerialPort(new SeparatorParser(), new TTYConfigure());
-        $serialPort->open("/dev/ttyS2");
-        $this->connection = $serialPort;
+        $this->connection = new SerialPort(new SeparatorParser(), new TTYConfigure());
+    }
+
+    public function connect(){
+        $this->connection->open("/dev/ttyS2");
+    }
+
+    public function disconnect(){
+        $this->connection->close();
     }
 
     public function getGPS(){
         while ($data = $this->connection->read()) {
             if (substr($data, 0, 6) === '$GPRMC') {
-                $this->connection->close();
                 return $data;
             }
         }
