@@ -20,6 +20,9 @@ class ESP8266
     }
 
     public function getFormattedNetworks(){
+        if(str_contains($this->getNetworks(), 'ERROR')){
+            return [];
+        }
         $networks_raw =  explode('+CWLAP:', 
             str_replace(')', '', 
                 str_replace('(', '', 
