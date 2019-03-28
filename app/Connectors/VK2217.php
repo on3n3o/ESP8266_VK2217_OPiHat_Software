@@ -11,7 +11,6 @@ class VK2217
     protected $connection = null;
 
     public function __construct(){
-        
         $serialPort = new SerialPort(new SeparatorParser(), new TTYConfigure());
         $serialPort->open("/dev/ttyS2");
         $this->connection = $serialPort;
@@ -19,8 +18,7 @@ class VK2217
 
     public function getGPS(){
         while ($data = $this->connection->read()) {
-            //$this->connection->write('AT+CWLAP\r\n');
-            if ($data === '$something') {
+            if (substr($data, 0, 6) === '$GPRMC') {
                 $this->connection->close();
                 return $data;
             }
