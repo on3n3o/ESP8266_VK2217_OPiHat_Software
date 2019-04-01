@@ -12,7 +12,7 @@ class HomeController extends Controller
         $config['center'] = '51.9478458, 19.4682356';
         $config['zoom'] = '6.75';
         app('map')->initialize($config);
-
+	$all_networks = Network::all();
         $networks = Network::whereHas('calculatedPosition')->get();
 
         foreach($networks as $network){
@@ -33,6 +33,6 @@ class HomeController extends Controller
         $map = app('map')->create_map();
 
         /** @todo move this to resources views */
-        return view('home', compact('map', 'networks'));
+        return view('home', compact('map', 'networks', 'all_networks'));
     }
 }

@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="card-title">Sieci:</div>
                 <div class="card-text">
-                    @foreach($networks as $network)
+                    @foreach($all_networks as $network)
                     {{$network->name}}<br>
                     @endforeach
                 </div>
